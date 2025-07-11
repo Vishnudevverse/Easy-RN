@@ -95,39 +95,15 @@ echo.
 
 rem 1) Try current directory first
 if exist package.json (
-  choice /C YN /N /M "Run current directory as React Native project?"
-  if %errorlevel%==1 (
-    echo.
-    echo Checking connected Android devices...
-    call adb devices
+  echo.
+  echo Checking connected Android devices...
+  call adb devices
 
-    echo.
-    echo Running current project...
-    call npx react-native run-android
-    pause
-    goto mainMenu
-  )
-)
-
-rem 2) Scan subfolders that contain package.json
-echo Scanning subdirectories for React Native projects...
-for /f "delims=" %%F in ('dir /b /ad') do (
-  if exist "%%F\package.json" (
-    choice /C YN /N /M "Run project %%F?"
-    if %%errorlevel%%==1 (
-      pushd "%%F"
-      echo.
-      echo Checking connected Android devices...
-      call adb devices
-
-      echo.
-      echo Running project "%%F"...
-      call npx react-native run-android
-      popd
-      pause
-      goto mainMenu
-    )
-  )
+  echo.
+  echo Running current project...
+  call npx react-native run-android
+  pause
+  goto mainMenu
 )
 
 echo.
@@ -150,26 +126,47 @@ echo All React Native processes stopped.
 pause
 goto mainMenu
 
-:extensions
-cls
-echo ===============================
-echo   VS Code Extension Toggle
-echo ===============================
-echo 1. Install Extensions
-echo 2. Uninstall Extensions
-echo.
-choice /C 12 /N /M "Choose action"
-if %errorlevel%==1 (
-  set "action=--install-extension"
-) else (
-  set "action=--uninstall-extension"
-)
+rem ——— VS Code extensions list (space-separated) ———
+set EXTENSIONS_LIST=dbaeumer.vscode-eslint esbenp.prettier-vscode msjsdiag.vscode-react-native christian-kohler.path-intellisense burkeholland.simple-react-snippets bradlc.vscode-tailwindcss
 
+:extensions
+echo ===============================
+echo VS Code Extension Toggle Script
+echo ===============================
 echo.
-for %%E in (!EXTENSIONS!) do (
-  call code %action% %%E
-)
+echo [1] install extensions
+echo [2] uninstall extensions
 echo.
-echo Done!
+
+set /p choice=Enter your choice [1/2]: 
+
+if "%choice%"=="1" goto install
+if "%choice%"=="2" goto uninstall
+
+echo Invalid choice. Exiting.
+pause
+exit /b
+
+:install
+echo Enabling selected extensions...
+call code --install-extension dbaeumer.vscode-eslint
+call code --install-extension esbenp.prettier-vscode
+call code --install-extension msjsdiag.vscode-react-native
+call code --install-extension christian-kohler.path-intellisense
+call code --install-extension burkeholland.simple-react-snippets
+call code --install-extension bradlc.vscode-tailwindcss
+echo Done! Extensions install.
+pause
+goto mainMenu
+
+:uninstall
+echo Disabling selected extensions...
+call code --uninstall-extension dbaeumer.vscode-eslint
+call code --uninstall-extension esbenp.prettier-vscode
+call code --uninstall-extension msjsdiag.vscode-react-native
+call code --uninstall-extension christian-kohler.path-intellisense
+call code --uninstall-extension burkeholland.simple-react-snippets
+call code --uninstall-extension bradlc.vscode-tailwindcss
+echo Done! Extensions uninstall.
 pause
 goto mainMenu
