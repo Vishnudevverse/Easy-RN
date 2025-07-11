@@ -53,7 +53,9 @@ This batch script `ReactNativeHelper.bat` is a simple command-line tool for Wind
 
    ```
    EasyReactNative.bat
-   or
+   ```
+   
+   ```
    EasyReactNative
    ```
 
