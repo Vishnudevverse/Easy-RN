@@ -1,0 +1,53 @@
+https://jdk.java.net/archive/ => 17.0.2 (build 17.0.2+8) => https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip
+https://nodejs.org/en/download => https://nodejs.org/dist/v22.17.0/node-v22.17.0-x64.msi
+https://developer.android.com/studio#command-tools => https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip
+
+make sure u download cmdline tools and node js latest. only java version 17.0.2
+
+install node.js, extract java files to prefered directory i used C:\Java\ and for cmdline tools, extract the folder make sure it looks like the structure shown below, if not, create folder and copy(after extractration) past more manually it looks like the structure shown below  
+  path and structure for cmdline tools
+    C:\Android\cmdline-tools\latest\
+    C:\Android\
+    └── cmdline-tools\
+        └── latest\
+            ├── bin\
+            │   └── sdkmanager.bat
+            └── ...
+
+
+edit environment variables
+  under system 
+    JAVA_HOME = C:\Java\jdk-17
+    ANDROID_HOME = C:\Android
+  add to path under system
+    %JAVA_HOME%\bin
+    %ANDROID_HOME%\cmdline-tools\latest\bin
+    %ANDROID_HOME%\platform-tools
+    %ANDROID_HOME%\emulator
+verify 
+
+verify
+  node -v
+  npm -v
+  java -version
+  javac -version
+  sdkmanager --list
+  adb --version
+
+physical device only  -  
+  sdkmanager --sdk_root=%ANDROID_HOME% "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+installs emulator too - 
+  sdkmanager --sdk_root=%ANDROID_HOME% "platform-tools" "platforms;android-34" "build-tools;34.0.0" "emulator" "system-images;android-34;google_apis;x86_64"
+
+sdkmanager --licenses
+
+npm install -g @react-native-community/cli
+npm list -g @react-native-community/cli
+
+adb devices
+npx @react-native-community/cli init YourProjectName
+cd YourProjectName
+npx react-native start
+npx react-native run-android
+code.
