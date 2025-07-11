@@ -45,14 +45,16 @@ This batch script `ReactNativeHelper.bat` is a simple command-line tool for Wind
 
 ## 🚀 How to Use
 
-1. **Download or copy the `ReactNativeHelper.bat` file** to any convenient location.
+1. **Download or copy the `EasyReactNative.bat` file** to any convenient location.
 
-2. **Open Command Prompt (CMD)** in the directory containing the batch file.
+2. Add the location to **systems path**
 
 3. **Run the script:**
 
    ```
-   ReactNativeHelper.bat
+   EasyReactNative.bat
+   or
+   EasyReactNative
    ```
 
 4. **Use the menu:**
