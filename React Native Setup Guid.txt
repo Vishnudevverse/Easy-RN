@@ -24,7 +24,6 @@ edit environment variables
     %ANDROID_HOME%\cmdline-tools\latest\bin
     %ANDROID_HOME%\platform-tools
     %ANDROID_HOME%\emulator
-verify 
 
 verify
   node -v
@@ -36,11 +35,10 @@ verify
 
 physical device only  -  
   sdkmanager --sdk_root=%ANDROID_HOME% "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-
 installs emulator too - 
   sdkmanager --sdk_root=%ANDROID_HOME% "platform-tools" "platforms;android-34" "build-tools;34.0.0" "emulator" "system-images;android-34;google_apis;x86_64"
 
-sdkmanager --licenses
+  sdkmanager --licenses
 
 npm install -g @react-native-community/cli
 npm list -g @react-native-community/cli
