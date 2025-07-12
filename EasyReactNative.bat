@@ -23,16 +23,18 @@ echo 1. Create Project
 echo 2. Run Project (current dir or subfolder)
 echo 3. Stop React Native Processes
 echo 4. Toggle VS Code Extensions
-echo 5. Exit
+echo 5. Initialize Project Structure
+echo 6. Exit
 echo.
-choice /C 12345 /N /M "Select an option"
+choice /C 123456 /N /M "Select an option"
 set "opt=%errorlevel%"
 
 if "%opt%"=="1" goto create
 if "%opt%"=="2" goto run
 if "%opt%"=="3" goto stop
 if "%opt%"=="4" goto extensions
-if "%opt%"=="5" exit /b
+if "%opt%"=="5" goto initStructure
+if "%opt%"=="6" exit /b
 goto mainMenu
 
 :create
@@ -168,5 +170,66 @@ call code --uninstall-extension christian-kohler.path-intellisense
 call code --uninstall-extension burkeholland.simple-react-snippets
 call code --uninstall-extension bradlc.vscode-tailwindcss
 echo Done! Extensions uninstall.
+pause
+goto mainMenu
+
+
+:initStructure
+cls
+echo Creating folder structure...
+REM Create main folders
+mkdir src
+mkdir src\assets\fonts
+mkdir src\assets\images
+mkdir src\components\Button
+mkdir src\components\Avatar
+mkdir src\features\auth\screens
+mkdir src\features\auth\hooks
+mkdir src\features\todos
+mkdir src\navigation
+mkdir src\hooks
+mkdir src\services
+mkdir src\store
+mkdir src\styles
+mkdir src\types
+mkdir src\utils
+mkdir src\config
+
+REM Create placeholder files
+echo // Root component > src\App.tsx
+
+echo // Button component > src\components\Button\Button.tsx
+echo // Button styles > src\components\Button\styles.ts
+
+echo // Auth screens > src\features\auth\screens\SignIn.tsx
+echo // Auth screens > src\features\auth\screens\SignUp.tsx
+echo // Auth hooks > src\features\auth\hooks\README.md
+echo // Auth API > src\features\auth\api.ts
+echo // Auth slice > src\features\auth\auth.slice.ts
+
+echo // Navigation setup > src\navigation\AppNavigator.tsx
+echo // Navigation types > src\navigation\types.ts
+
+echo // Custom hook > src\hooks\useDebounce.ts
+echo // Custom hook > src\hooks\useNetInfo.ts
+
+echo // API client > src\services\apiClient.ts
+echo // Billing helpers > src\services\billing.ts
+echo // Ads helpers > src\services\ads.ts
+
+echo // Store setup > src\store\index.ts
+echo // Root reducer > src\store\rootReducer.ts
+
+echo // Colors > src\styles\colors.ts
+echo // Typography > src\styles\typography.ts
+
+echo // Shared types > src\types\index.d.ts
+
+echo // Date helpers > src\utils\date.ts
+echo // Validators > src\utils\validators.ts
+
+echo // Config > src\config\index.ts
+
+echo All folders and placeholder files created successfully!
 pause
 goto mainMenu
