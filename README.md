@@ -78,7 +78,7 @@ This batch script `react-native-helper.bat` is a simple command-line tool for Wi
 
 ## 🚀 How to Use
 
-1. Download or copy the `react-native-helper.bat` file to any convenient location.
+1. Download or copy the `EasyReactNative.bat` file to any convenient location.
 
 2. (Optional) Add the script’s folder to your system `PATH` for easy access.
 
